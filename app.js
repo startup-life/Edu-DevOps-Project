@@ -98,6 +98,8 @@ app.use(
     })
 );
 
+app.set('trust proxy', true); // 프록시 서버를 신뢰하도록 설정
+
 // Timeout 설정
 app.use(timeout('5s'));
 
