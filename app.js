@@ -9,8 +9,6 @@ const { notFoundHandler, errorHandler } = require('./util/errorHandler.js');
 const timeout = require('connect-timeout');
 const rateLimit = require('express-rate-limit');
 const helmet = require('helmet');
-const fs = require('fs');
-const https = require('https');
 const { STATUS_MESSAGE } = require('./util/constant/httpStatusCode');
 
 const app = express();
