@@ -32,35 +32,13 @@ const initSessionId = async () => {
     try {
         await dbConnect.query(sql);
 
-        if (process.env.NODE_ENV === 'production') {
-            // 세션 ID 초기화 완료 후 서버 시작
-            startHttpsServer();
-        } else {
-            // 세션 ID 초기화 완료 후 서버 시작
-            startHttpServer();
-        }
+        app.listen(PORT, () => {
+            console.log(`edu-community app listening on port ${PORT}`);
+        });
     } catch (error) {
         console.error('Failed to initialize session IDs:', error);
         process.exit(1); // 실패 시 프로세스 종료
     }
-};
-
-// 서버 시작 함수
-const startHttpsServer = () => {
-    const httpsOptions = {
-        key: fs.readFileSync(process.env.PRIVATE_PEM_PATH),
-        cert: fs.readFileSync(process.env.FULLCHAIN_PEM_PATH)
-    };
-
-    https.createServer(httpsOptions, app).listen(PORT, () => {
-        console.log(`edu-community app listening on port ${PORT}`);
-    });
-};
-
-const startHttpServer = () => {
-    app.listen(PORT, () => {
-        console.log(`edu-community app listening on port ${PORT}`);
-    });
 };
 
 // 요청 속도 제한 설정
