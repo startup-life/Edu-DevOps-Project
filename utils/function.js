@@ -2,7 +2,7 @@ export const getServerUrl = () => {
     const host = window.location.hostname;
     return host.includes('localhost')
         ? 'http://localhost:3000'
-        : `https://${host}:3000`;
+        : `https://${host}`;
 };
 
 export const setCookie = (cookie_name, value, days) => {
